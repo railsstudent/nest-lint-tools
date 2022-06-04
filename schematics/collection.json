@@ -1,0 +1,10 @@
+{
+  "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "nest-add": {
+      "description": "Install linting tools and eslint plugins to a nest project.",
+      "factory": "./nest-add/index#nestAdd",
+      "schema": "./nest-add/schema.json"
+    }
+  }
+}

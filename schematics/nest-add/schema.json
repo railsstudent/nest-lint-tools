@@ -1,0 +1,14 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "$id": "SchematicsNestAdd",
+    "title": "Nest Add Schema",
+    "description": "Add lint tools to the nestjs application",
+    "type": "object",
+    "properties": {
+      "isAddEslintRxjs": {
+        "type": "boolean",
+        "description": "Install eslint-plugin-rxjs dev dependencies.",
+        "x-prompt": "Do you like to add eslint rules for rxjs"
+      }
+     }
+  }
