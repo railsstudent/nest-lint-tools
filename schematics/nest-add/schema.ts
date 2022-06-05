@@ -3,4 +3,5 @@ export interface Schema {
     isAddEslintRxjs: boolean;
     isAddStrictMode: boolean;
     isAddCspell: boolean;
+    isAddCommitlint: boolean;
 }

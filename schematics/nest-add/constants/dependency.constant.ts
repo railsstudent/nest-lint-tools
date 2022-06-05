@@ -11,3 +11,22 @@ export const cspell: NodeDependency = {
     type: NodeDependencyType.Dev,
     version: '~6.1.1'
 }
+
+export const commitlintCli: NodeDependency = {
+    name: '@commitlint/cli',
+    type: NodeDependencyType.Dev,
+    version: '~17.0.2'
+}
+
+export const commitlintConfigConvention: NodeDependency = {
+    name: '@commitlint/config-conventional',
+    type: NodeDependencyType.Dev,
+    version: '~17.0.2'
+}
+
+
+export const husky: NodeDependency = {
+    name: 'husky',
+    type: NodeDependencyType.Dev,
+    version: '~8.0.1'
+}

@@ -5,12 +5,6 @@
     "description": "Add lint tools to the nestjs application",
     "type": "object",
     "properties": {
-      "isAddEslintRxjs": {
-        "type": "boolean",
-        "description": "Install eslint-plugin-rxjs dev dependencies.",
-        "x-prompt": "Do you like to add eslint rules for rxjs?",
-        "default": true
-      },
       "isAddStrictMode": {
         "type": "boolean",
         "description": "Add strict mode in tsConfig.json.",
@@ -21,6 +15,18 @@
         "type": "boolean",
         "description": "Install cspell dev depdendencies.",
         "x-prompt": "Do you like to add cspell for spell checking?",
+        "default": true
+      },
+      "isAddCommitlint": {
+        "type": "boolean",
+        "description": "Install commitlint dev depdendencies.",
+        "x-prompt": "Do you like to add commitlint to adopt the convention of commit message?",
+        "default": true
+      },
+      "isAddEslintRxjs": {
+        "type": "boolean",
+        "description": "Install eslint-plugin-rxjs dev dependencies.",
+        "x-prompt": "Do you like to add eslint rules for rxjs?",
         "default": true
       }
      }
