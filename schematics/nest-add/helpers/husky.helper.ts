@@ -9,13 +9,12 @@ npx --no -- commitlint --edit "\${1}"
   
     const commitMsgFilename = '.husky/commit-msg';
     if (!tree.exists(commitMsgFilename)) {
-        tree.create(commitMsgFilename, commitMsg);
-        context.logger.info(`Added ${commitMsgFilename}`);    
-        context.logger.info(`
-        Please run the following command to make ${commitMsgFilename} executable:
-          chmod a+x ${commitMsgFilename}
-        `);
-
+      tree.create(commitMsgFilename, commitMsg);
+      context.logger.info(`Added ${commitMsgFilename}`);    
+      context.logger.info(`
+      Please run the following command to make ${commitMsgFilename} executable:
+        chmod a+x ${commitMsgFilename}
+      `);
     } else {
         context.logger.info(`Found ${commitMsgFilename}, skip this step`);
     }
