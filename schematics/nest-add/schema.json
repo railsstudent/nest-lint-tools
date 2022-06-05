@@ -23,6 +23,12 @@
         "x-prompt": "Do you like to add commitlint to adopt the convention of commit message?",
         "default": true
       },
+      "isAddLintStaged": {
+        "type": "boolean",
+        "description": "Install lint-staged dev dependencies.",
+        "x-prompt": "Do you like to add lint-staged?",
+        "default": true
+      },
       "isAddEslintRxjs": {
         "type": "boolean",
         "description": "Install eslint-plugin-rxjs dev dependencies.",

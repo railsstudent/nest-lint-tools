@@ -4,3 +4,4 @@ export * from './eslint-rxjs.helper';
 export * from './husky.helper';
 export * from './tsconfig.helper';
 export * from './dependency.helper';
+export * from './lint-staged.helper';

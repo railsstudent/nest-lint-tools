@@ -24,9 +24,14 @@ export const commitlintConfigConvention: NodeDependency = {
     version: '~17.0.2'
 }
 
-
 export const husky: NodeDependency = {
     name: 'husky',
     type: NodeDependencyType.Dev,
     version: '~8.0.1'
+}
+
+export const lintStaged: NodeDependency = {
+    name: 'lint-staged',
+    type: NodeDependencyType.Dev,
+    version: '~13.0.0'
 }

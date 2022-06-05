@@ -4,4 +4,5 @@ export interface Schema {
     isAddStrictMode: boolean;
     isAddCspell: boolean;
     isAddCommitlint: boolean;
+    isAddLintStaged: boolean;
 }
