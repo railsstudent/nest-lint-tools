@@ -38,9 +38,9 @@ function addNpmScript(tree: Tree, context: SchematicContext) {
   }
 
   const packageJson = JSON.parse(buffer.toString());
-  packageJson.scripts.cspell = "cspell --no-must-find-files src/**/*.{ts,js}";
+  packageJson.scripts.cspell = 'cspell --no-must-find-files src/**/*.{ts,js}';
   tree.overwrite(pkgPath, JSON.stringify(packageJson, null, 2));
-  context.logger.info('Added cspell script in package.json')
+  context.logger.info('Added cspell script to package.json')
 
   return tree;
 }
