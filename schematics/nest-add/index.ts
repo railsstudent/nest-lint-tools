@@ -3,8 +3,6 @@ import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 import { addPackageJsonDependency, getPackageJsonDependency, NodeDependency, NodeDependencyType } from '@schematics/angular/utility/dependencies';
 import { Dependency } from './interfaces';
 import { Schema } from './schema';
-import { getLatestDependencyVersion } from './utils';
-
 
 // You don't have to export the function as default. You can also have more than one rule factory
 // per file.
@@ -24,24 +22,22 @@ function addEslintRxjs(options: Schema): Rule {
     if (options.isAddEslintRxjs) {
       const dependency: Dependency = {
         name: 'eslint-plugin-rxjs',
-        type: NodeDependencyType.Dev
+        type: NodeDependencyType.Dev,
+        version: '~5.0.2'
       }
 
-      getLatestDependencyVersion(dependency.name).then(
-        ({ name, version }) => {
-          context.logger.info(`Added ${name}@${version}`);
-          const nodeDependency: NodeDependency = {
-            name,
-            version,
-            type: dependency.type,
-          };
-          addPackageJsonDependency(tree, nodeDependency);
-        }
-      ).then(() => {
-        updateEslintrc(tree, context)
-      })
-      .then(() => tree) as ReturnType<Rule>;
+      const nodeDependency: NodeDependency = {
+        name: dependency.name,
+        version: dependency.version,
+        type: dependency.type,
+      };
+
+      addPackageJsonDependency(tree, nodeDependency);
+      context.logger.info(`Added ${dependency.name}@${dependency.version}`);
+      updateEslintrc(tree, context)
     }
+
+    return tree
   }
 }
 
@@ -60,7 +56,7 @@ function updateEslintrc(tree: Tree, context: SchematicContext) {
         const eslintJsFile = buffer.toString()
         const idxExtends = eslintJsFile.indexOf('extends: [')
         const idxNextCloseBracket = eslintJsFile.indexOf(']', idxExtends)
-        const modifiedEslintJsFile = `${eslintJsFile.substring(0, idxNextCloseBracket)}'plugin:rxjs/recommended'\n${eslintJsFile.substring(idxNextCloseBracket)}`
+        const modifiedEslintJsFile = `${eslintJsFile.substring(0, idxNextCloseBracket)},'plugin:rxjs/recommended'\n${eslintJsFile.substring(idxNextCloseBracket)}`
         tree.overwrite(eslintPath, modifiedEslintJsFile);
       }
       context.logger.info(`Added 'plugin:rxjs/recommended' to ${eslintPath}`)

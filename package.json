@@ -1,20 +1,23 @@
 {
   "name": "nest-lint-tools",
-  "version": "0.0.0",
-  "description": "A blank schematics",
+  "version": "0.0.1",
+  "description": "A schematics to install dependencies and elsint plugins to enforce code quality",
   "scripts": {
+    "copy-build-files": "copyfiles ./schematics/*/schema.json ./schematics/**/*.{js,js.map,d.ts} ./schematics/*/files/** ./schematics/collection.json ./dist",
+    "delete-build-files": "ts-node ./del-build-files.ts",
     "prebuild": "rimraf dist",
     "build": "tsc -p tsconfig.schematics.json",
-    "postbuild": "copyfiles ./schematics/*/schema.json ./schematics/*/files/** ./schematics/collection.json ./dist",
-
-    "test": "npm run build && jasmine src/**/*_spec.js"
+    "postbuild": "npm run copy-build-files",
+    "test": "npm run build && jasmine src/**/*_spec.js",
+    "manual-test": "npm run build && schematics .:nest-add --dry-run=false",
+    "lint": "eslint \"{src,schematics}/**/*.ts\" --fix"
   },
   "keywords": [
     "schematics"
   ],
   "author": "",
   "license": "MIT",
-  "schematics": "./schematics/collection.json",  
+  "schematics": "./schematics/collection.json",
   "nest-add": {
     "save": "devDependencies"
   },
@@ -26,9 +29,14 @@
     "typescript": "~4.7.2"
   },
   "devDependencies": {
-    "@types/node": "^14.15.0",
     "@types/jasmine": "~4.0.0",
+    "@types/node": "^14.15.0",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.16.0",
     "copyfiles": "^2.4.1",
-    "jasmine": "^4.0.0"
+    "del": "^6.1.1",
+    "eslint": "8.17.0",
+    "jasmine": "^4.0.0",
+    "ts-node": "^10.8.1"
   }
 }
