@@ -23,7 +23,13 @@ export function addCommitlint(options: Schema): Rule {
 }
 
 function createCommitlintConfig(tree: Tree, context: SchematicContext) {    
-    tree.create('commitlint.config.js', `module.exports = { extends: ['@commitlint/config-conventional'] };`);
-    context.logger.info('Added commitlint.config.js')
-    return true
+  const configName = 'commitlint.config.js'
+  if (!tree.exists(configName)) {
+    tree.create(configName, `module.exports = { extends: ['@commitlint/config-conventional'] };`);
+    context.logger.info(`Added ${configName}`)
+  } else {
+    context.logger.info(`Found ${configName}, skip this step`)
+  }
+  
+  return tree
 }

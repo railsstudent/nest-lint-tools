@@ -17,16 +17,21 @@ export function addCspell(options: Schema): Rule {
 }
 
 function createCspellJson(tree: Tree, context: SchematicContext) {    
-    const content = {
-        "version": "0.2",
-        "language": "en",
-        "words": ["nestjs", "commitlint", "dtos"],
-        "flagWords": ["hte"]
-    };
+  const content = {
+    "version": "0.2",
+    "language": "en",
+    "words": ["nestjs", "commitlint", "dtos"],
+    "flagWords": ["hte"]
+  };
 
-    tree.create('cspell.json', JSON.stringify(content, null, 2));
-    context.logger.info('Added cspell.json')
-    return true
+  const configName = 'cspell.json';
+  if (!tree.exists(configName)) {
+    tree.create(configName, JSON.stringify(content, null, 2));
+    context.logger.info(`Added ${configName}`)
+  } else {
+    context.logger.info(`Found ${configName}, skip this step`)
+  }
+  return tree
 }
 
 function addNpmScript(tree: Tree, context: SchematicContext) {
@@ -38,9 +43,13 @@ function addNpmScript(tree: Tree, context: SchematicContext) {
   }
 
   const packageJson = JSON.parse(buffer.toString());
-  packageJson.scripts.cspell = 'cspell --no-must-find-files src/**/*.{ts,js}';
-  tree.overwrite(pkgPath, JSON.stringify(packageJson, null, 2));
-  context.logger.info('Added cspell script to package.json')
+  if (!packageJson.scripts.cspell) {
+    packageJson.scripts.cspell = 'cspell --no-must-find-files src/**/*.{ts,js}';
+    tree.overwrite(pkgPath, JSON.stringify(packageJson, null, 2));
+    context.logger.info('Added cspell script to package.json')
+  } else {
+    context.logger.info('Found cspell script, skip this step')
+  }
 
   return tree;
 }
