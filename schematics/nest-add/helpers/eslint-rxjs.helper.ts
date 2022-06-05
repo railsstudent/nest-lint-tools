@@ -1,14 +1,13 @@
 import { Rule, SchematicContext, Tree } from "@angular-devkit/schematics";
-import { addPackageJsonDependency } from "@schematics/angular/utility/dependencies";
 import { eslintPluginRxjs } from "../constants";
 import { Schema } from "../schema";
+import { addDependencies } from "./dependency.helper";
 
 export function addEslintRxjs(options: Schema): Rule {
     return (tree: Tree, context: SchematicContext) => {
       if (options.isAddEslintRxjs) {
-        addPackageJsonDependency(tree, eslintPluginRxjs);
-        context.logger.info(`Added ${eslintPluginRxjs.name}@${eslintPluginRxjs.version}`);
-        updateEslintrc(tree, context)
+        addDependencies(tree, context, [eslintPluginRxjs]);
+        updateEslintrc(tree, context);
       }
   
       return tree

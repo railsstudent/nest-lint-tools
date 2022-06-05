@@ -1,13 +1,12 @@
 import { Rule, SchematicContext, SchematicsException, Tree } from "@angular-devkit/schematics";
-import { addPackageJsonDependency } from "@schematics/angular/utility/dependencies";
 import { cspell } from "../constants";
 import { Schema } from "../schema";
+import { addDependencies } from "./dependency.helper";
 
 export function addCspell(options: Schema): Rule {
     return (tree: Tree, context: SchematicContext) => {
       if (options.isAddCspell) {
-        addPackageJsonDependency(tree, cspell);
-        context.logger.info(`Added ${cspell.name}@${cspell.version}`);
+        addDependencies(tree, context, [cspell]);
         createCspellJson(tree, context);
         addNpmScript(tree, context);
       }
