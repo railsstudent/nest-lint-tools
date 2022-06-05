@@ -8,12 +8,20 @@
       "isAddEslintRxjs": {
         "type": "boolean",
         "description": "Install eslint-plugin-rxjs dev dependencies.",
-        "x-prompt": "Do you like to add eslint rules for rxjs?"
+        "x-prompt": "Do you like to add eslint rules for rxjs?",
+        "default": true
       },
       "isAddStrictMode": {
         "type": "boolean",
         "description": "Add strict mode in tsConfig.json.",
-        "x-prompt": "Do you like to set strict mode in tsconfig.json?"
+        "x-prompt": "Do you like to set strict mode in tsconfig.json?",
+        "default": true
+      },
+      "isAddCspell": {
+        "type": "boolean",
+        "description": "Install cspell dev depdendencies.",
+        "x-prompt": "Do you like to add cspell for spell checking?",
+        "default": true
       }
      }
   }
