@@ -1,22 +1,24 @@
 import { Tree, SchematicContext, SchematicsException } from "@angular-devkit/schematics";
+import { NodePackageInstallTask, RunSchematicTask } from "@angular-devkit/schematics/tasks";
+import { HuskySchema } from "../../husky-tasks/husky-schema"
 
 export function addCommitMessageHook(tree: Tree, context: SchematicContext) {
     const commitMsg = `#!/bin/sh
-. "\$(dirname "\$0")/_/husky.sh"
+. "$(dirname "$0")/_/husky.sh"
 
 npx --no -- commitlint --edit "\${1}"
   `;
   
-    const commitMsgFilename = '.husky/commit-msg';
-    if (!tree.exists(commitMsgFilename)) {
-      tree.create(commitMsgFilename, commitMsg);
-      context.logger.info(`Added ${commitMsgFilename}`);    
-      context.logger.info(`
-      Please run the following command to make ${commitMsgFilename} executable:
-        chmod a+x ${commitMsgFilename}
-      `);
+    const commitMsgFilePath = '.husky/commit-msg';
+    if (!tree.exists(commitMsgFilePath)) {
+      tree.create(commitMsgFilePath, commitMsg);
+      context.logger.info(`Added ${commitMsgFilePath}`);    
+      const copiedOptions: HuskySchema = { 
+        commitMsgFilePath,
+      }
+      context.addTask(new RunSchematicTask('commit-msg-hook', copiedOptions));
     } else {
-        context.logger.info(`Found ${commitMsgFilename}, skip this step`);
+        context.logger.info(`Found ${commitMsgFilePath}, skip this step`);
     }
   
     return tree
@@ -51,17 +53,17 @@ npx --no-install lint-staged
     if (buffer === null) {
       throw new SchematicsException(`Cannot find ${pkgPath}`);
     }
-    
+
     const packageJson = JSON.parse(buffer.toString());
     if (!packageJson.scripts.prepare) {    
       packageJson.scripts.prepare = 'husky install';
       tree.overwrite(pkgPath, JSON.stringify(packageJson, null, 2));
       context.logger.info('Added husky prepare script to package.json');
-  
-      context.logger.info(`
-      Please run the following command to enable git hooks:
-        npm run prepare
-      `);
+      const installTaskId = context.addTask(new NodePackageInstallTask());
+      const copiedOptions: HuskySchema = { 
+        enableGitHooksScript: 'npm run prepare',
+      }
+      context.addTask(new RunSchematicTask('husky-prepare', copiedOptions), [installTaskId]);
     } else {
       context.logger.info('Found husky prepare script, skip this step');
     }

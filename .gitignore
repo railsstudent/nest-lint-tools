@@ -19,6 +19,6 @@ yarn-error.log*
 .DS_Store
 
 dist/
-schematics/nest-add/**/*.js
-schematics/nest-add/**/*.js.map
-schematics/nest-add/**/*.d.ts
+schematics/**/*.js
+schematics/**/*.js.map
+schematics/**/*.d.ts

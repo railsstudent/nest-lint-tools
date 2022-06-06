@@ -13,7 +13,7 @@ export function addCommitlint(options: Schema): Rule {
         addCommitMessageHook(tree, context);
       }
   
-      return tree
+      return tree;
     }
 }
 
