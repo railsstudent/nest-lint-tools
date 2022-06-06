@@ -1,5 +1,5 @@
 import { Rule, SchematicContext, Tree } from "@angular-devkit/schematics";
-import { lintStaged } from "../constants";
+import { husky, lintStaged } from "../constants";
 import { Schema } from "../schema";
 import { addDependencies } from "./dependency.helper";
 import { addHuskyPrepareScript, addPreCommitHook } from "./husky.helper";
@@ -7,7 +7,7 @@ import { addHuskyPrepareScript, addPreCommitHook } from "./husky.helper";
 export function addLintStaged(options: Schema): Rule {
     return (tree: Tree, context: SchematicContext) => {
       if (options.isAddLintStaged) {
-        addDependencies(tree, context, [lintStaged]);
+        addDependencies(tree, context, [lintStaged, husky]);
         createLintStagedJson(tree, context, options);
         addHuskyPrepareScript(tree, context);
         addPreCommitHook(tree, context);
