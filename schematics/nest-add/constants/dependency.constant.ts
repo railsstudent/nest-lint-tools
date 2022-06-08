@@ -35,3 +35,9 @@ export const lintStaged: NodeDependency = {
     type: NodeDependencyType.Dev,
     version: '~13.0.0'
 }
+
+export const eslintSonarjs: NodeDependency = {
+    name: 'eslint-plugin-sonarjs',
+    type: NodeDependencyType.Dev,
+    version: '~0.13.0'
+}

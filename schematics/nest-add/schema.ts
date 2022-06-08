@@ -5,4 +5,7 @@ export interface Schema {
     isAddCspell: boolean;
     isAddCommitlint: boolean;
     isAddLintStaged: boolean;
+    isAddEslintSonarJs: boolean;
+    isAddYouDontNeedMomentJs: boolean;
+    isAddYouDontNeedLodash: boolean;
 }
