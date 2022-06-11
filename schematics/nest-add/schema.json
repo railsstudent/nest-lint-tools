@@ -40,18 +40,6 @@
         "description": "Install eslint-plugin-sonarjs dev dependencies.",
         "x-prompt": "Do you like to add SonarJS rules for ESLint?",
         "default": true
-      },
-      "isAddYouDontNeedMomentJs": {
-        "type": "boolean",
-        "description": "Install You-Dont-Need-Momentjs dev dependencies.",
-        "x-prompt": "Do you like to add You-Dont-Need-Momentjs for ESLint?",
-        "default": true
-      },
-      "isAddYouDontNeedLodash": {
-        "type": "boolean",
-        "description": "Install You-Dont-Need-Lodash-Underscore dev dependencies.",
-        "x-prompt": "Do you like to add You-Dont-Need-Lodash-Underscore for ESLint?",
-        "default": true
       }
      }
   }

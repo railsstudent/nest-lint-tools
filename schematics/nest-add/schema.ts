@@ -6,6 +6,4 @@ export interface Schema {
     isAddCommitlint: boolean;
     isAddLintStaged: boolean;
     isAddEslintSonarJs: boolean;
-    isAddYouDontNeedMomentJs: boolean;
-    isAddYouDontNeedLodash: boolean;
 }
