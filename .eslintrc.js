@@ -5,7 +5,8 @@ module.exports = {
     },
     "extends": [
         "eslint:recommended",
-        "plugin:@typescript-eslint/recommended"
+        "plugin:@typescript-eslint/recommended",
+        "plugin:prettier/recommended"
     ],
 
     "parser": "@typescript-eslint/parser",
@@ -15,9 +16,11 @@ module.exports = {
         "project": './tsconfig.schematics.json',
     },
     "plugins": [
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "prettier"
     ],
     "ignorePatterns": ['.eslintrc.js'],
     "rules": {
+        "prettier/prettier": ["error", {"singleQuote": true, "trailingComma": "all", "tabWidth": 2, "singleQuote": true, "semi": false, "printWidth": 140 }]
     }
 }
