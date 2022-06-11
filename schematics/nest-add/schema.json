@@ -32,7 +32,7 @@
       "isAddEslintRxjs": {
         "type": "boolean",
         "description": "Install eslint-plugin-rxjs dev dependencies.",
-        "x-prompt": "Do you like to add eslint rules for rxjs?",
+        "x-prompt": "Do you like to add eslint rules for RxJs?",
         "default": true
       },
       "isAddEslintSonarJs": {

@@ -1,6 +1,6 @@
 import { chain, Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
-import { addCommitlint, addCspell, addEslintRxjs, addLintStaged, addStrictMode, addEslintSonarjs } from './helpers';
+import { addCommitlint, addCspell, addEslintRxjs, addLintStaged, addStrictMode, addEslintSonarjs, addNodeVersion } from './helpers';
 import { Schema } from './schema';
 
 // You don't have to export the function as default. You can also have more than one rule factory
@@ -16,6 +16,7 @@ export function nestAdd(options: Schema): Rule {
       addLintStaged(options),
       addEslintRxjs(options),
       addEslintSonarjs(options),
+      addNodeVersion(options)
     ])
   };
 }

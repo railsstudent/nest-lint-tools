@@ -5,7 +5,7 @@ import { Schema } from "../schema";
 export function addNodeVersion(options: Schema): Rule {
     return (tree: Tree, context: SchematicContext) => {
         addEngines(tree, context, options.nodeVersion);
-        generateNodeVersionFile(tree, context, options.nodeVersionFile);
+        generateNodeVersionFile(tree, context, options);
         return tree
     }
 }
@@ -19,29 +19,31 @@ function addEngines(tree: Tree, context: SchematicContext, nodeVersion: number) 
     }
   
     const packageJson = JSON.parse(buffer.toString());
-    if (!packageJson?.engines?.node) {
-        packageJson.engines = {
-            node: nodeVersion
-        }
-        tree.overwrite(pkgPath, JSON.stringify(packageJson, null, 2));
-        context.logger.info(`Added ${nodeVersion} to package.json`)
-    } else {
-        context.logger.info(`Found node version in ${pkgPath}, skip this step`)
+    packageJson.engines = {
+        node: `>= ${nodeVersion}`
     }
+    tree.overwrite(pkgPath, JSON.stringify(packageJson, null, 2));
+    context.logger.info(`Added ${nodeVersion} to package.json`);
   
     return tree;
 }
   
-function generateNodeVersionFile(tree: Tree, context: SchematicContext, nodeVersionFile: string) {
-    const enumNodeVersionFile = nodeVersionFile as NODE_VERSION_FILE;
-    if (enumNodeVersionFile === NODE_VERSION_FILE.NODE_VERSION) {
-        const nodeConfigFilename = '.node-version';
-        context.logger.info(`Created ${nodeConfigFilename}`);
-    } else if (enumNodeVersionFile === NODE_VERSION_FILE.NVMRC) {
-        const nodeConfigFilename = '.nvmrc';
-        context.logger.info(`Created ${nodeConfigFilename}`);
-    } else if (enumNodeVersionFile === NODE_VERSION_FILE.NONE) {
-        context.logger.info('No node version configuration created')
+function generateNodeVersionFile(tree: Tree, context: SchematicContext, options: Schema) {
+    const configFileNameMap: Record<string, string> = {
+        [NODE_VERSION_FILE.NODE_VERSION]: '.node-version',
+        [NODE_VERSION_FILE.NVMRC]: '.nvmrc',
+        [NODE_VERSION_FILE.NONE]: '',
+    }
+
+    const { nodeVersionFile, nodeVersion } = options;
+    const configFileName = configFileNameMap[nodeVersionFile] || ''
+    if (configFileName) {
+        if (!tree.exists(configFileName)) {
+            tree.create(configFileName, `${nodeVersion}`);
+            context.logger.info(`Created ${configFileName}`);
+        } else {
+            context.logger.info(`Found ${configFileName}, skip this step`);
+        }
     }
 
     return tree;
