@@ -43,11 +43,7 @@ function insertTextToStringFile(file: string, pattern: string, insertText: strin
     const contentBetween = file.substring(idxExtends + pattern.length, idxCloseBracket)
     const elements = [...contentBetween.split(','), `'${insertText}'`]
         .map(element => element.replace(/(\r\n|\n|\r)/gm, '').trim())        
-        .filter(element => { 
-            console.log(element)
-            return element
-        })
+        .filter(element => element)
 
-    console.log(elements)
     return `${file.substring(0, idxExtends + pattern.length)}${elements.join(',')}${file.substring(idxCloseBracket)}`
 }
