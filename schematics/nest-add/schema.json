@@ -40,6 +40,29 @@
         "description": "Install eslint-plugin-sonarjs dev dependencies.",
         "x-prompt": "Do you like to add SonarJS rules for ESLint?",
         "default": true
+      },
+      "nodeVersion": {
+        "type": "number",
+        "description": "Specify node version that the project uses",
+        "x-prompt": "Which version does the project use?",
+        "default": "16",
+        "enum": [
+          12,
+          14,
+          16,
+          18
+        ]
+      },
+      "nodeVersionFile": {
+        "type": "string",
+        "description": "Create node version file.",
+        "x-prompt": "Do you like to create node version configuration file?",
+        "default": "none",
+        "enum": [
+          "none",
+          ".node-version",
+          ".nvmrc"
+        ]
       }
      }
   }
