@@ -1,5 +1,5 @@
 import { Rule, SchematicContext, SchematicsException, Tree } from '@angular-devkit/schematics'
-import { cspell } from '../constants'
+import { cspell, CSPELL_CONFIG } from '../constants'
 import { Schema } from '../schema'
 import { addDependencies } from './dependency.helper'
 
@@ -16,16 +16,9 @@ export function addCspell(options: Schema): Rule {
 }
 
 function createCspellJson(tree: Tree, context: SchematicContext) {
-  const content = {
-    version: '0.2',
-    language: 'en',
-    words: ['nestjs', 'commitlint', 'dtos'],
-    flagWords: ['hte'],
-  }
-
   const configName = 'cspell.json'
   if (!tree.exists(configName)) {
-    tree.create(configName, JSON.stringify(content, null, 2))
+    tree.create(configName, JSON.stringify(CSPELL_CONFIG, null, 2))
     context.logger.info(`Added ${configName}`)
   } else {
     context.logger.info(`Found ${configName}, skip this step`)
