@@ -1,15 +1,15 @@
 // Special typescript project file, used by eslint only.
 {
-    "extends": "./tsconfig.json",
-    "compilerOptions": {
-        "rootDir": ".",
-    },
-    "include": [
-        // repeated from base config's "include" setting
-        "schematics",
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "."
+  },
+  "include": [
+    // repeated from base config's "include" setting
+    "schematics",
 
-        // these are the eslint-only inclusions
-        "del-build-files.ts",
-        "del-spec-files.ts"    
-    ]
+    // these are the eslint-only inclusions
+    "del-build-files.ts",
+    "del-spec-files.ts"
+  ]
 }

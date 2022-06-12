@@ -12,10 +12,13 @@
     "test": "npm run build && jasmine src/**/*_spec.js",
     "manual-test:dry-run": "npm run build && schematics .:nest-add",
     "manual-test": "npm run build && schematics .:nest-add --dry-run=false",
-    "lint": "eslint \"{src,schematics}/**/*.ts\" --fix"
+    "lint": "eslint \"{src,schematics}/**/*.ts\" --fix",
+    "format": "prettier --write ."
   },
   "keywords": [
-    "schematics"
+    "schematics",
+    "nestjs",
+    "lint"
   ],
   "author": "",
   "license": "MIT",
