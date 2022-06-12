@@ -5,9 +5,10 @@
   "scripts": {
     "copy-build-files": "copyfiles ./schematics/*/schema.json ./schematics/**/*.{js,js.map,d.ts} ./schematics/*/files/** ./schematics/collection.json ./dist",
     "delete-build-files": "ts-node ./del-build-files.ts",
+    "delete-spec-files": "ts-node ./del-spec-files.ts",
     "prebuild": "rimraf dist",
     "build": "tsc -p tsconfig.schematics.json",
-    "postbuild": "npm run copy-build-files",
+    "postbuild": "npm run delete-spec-files && npm run copy-build-files",
     "test": "npm run build && jasmine src/**/*_spec.js",
     "manual-test:dry-run": "npm run build && schematics .:nest-add",
     "manual-test": "npm run build && schematics .:nest-add --dry-run=false",

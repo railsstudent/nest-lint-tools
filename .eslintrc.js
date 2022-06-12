@@ -13,7 +13,7 @@ module.exports = {
     "parserOptions": {
         "ecmaVersion": "latest",
         "sourceType": "module",
-        "project": './tsconfig.schematics.json',
+        "project": './tsconfig.eslint.json',
     },
     "plugins": [
         "@typescript-eslint",
