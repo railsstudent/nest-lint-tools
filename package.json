@@ -3,15 +3,13 @@
   "version": "0.0.1",
   "description": "A schematics to install dependencies and elsint plugins to enforce code quality",
   "scripts": {
-    "copy-build-files": "copyfiles package.json ./schematics/*/schema.json ./schematics/**/*.{js,js.map,d.ts} ./schematics/*/files/** ./schematics/collection.json ./dist",
-    "delete-build-files": "ts-node ./del-build-files.ts",
-    "delete-spec-files": "ts-node ./del-spec-files.ts",
+    "copy-files": "copyfiles ./schematics/*/schema.json ./schematics/*/files/** ./schematics/collection.json ./dist",
     "prebuild": "rimraf dist",
     "build": "tsc -p tsconfig.schematics.json",
-    "postbuild": "npm run delete-spec-files && npm run copy-build-files",
+    "postbuild": "npm run copy-files",
     "test": "npm run build && jasmine src/**/*_spec.js",
-    "manual-test:dry-run": "npm run build && schematics .:nest-add",
-    "manual-test": "npm run build && schematics .:nest-add --dry-run=false",
+    "manual-test:dry-run": "schematics .:nest-add",
+    "manual-test": "schematics .:nest-add --dry-run=false",
     "lint": "eslint \"{src,schematics}/**/*.ts\" --fix",
     "format": "prettier --write ."
   },
@@ -22,7 +20,7 @@
   ],
   "author": "Connie Leung",
   "license": "MIT",
-  "schematics": "./schematics/collection.json",
+  "schematics": "./dist/schematics/collection.json",
   "nest-add": {
     "save": "devDependencies"
   },
@@ -39,7 +37,6 @@
     "@typescript-eslint/eslint-plugin": "^5.27.1",
     "@typescript-eslint/parser": "^5.27.1",
     "copyfiles": "^2.4.1",
-    "del": "^6.1.1",
     "eslint": "8.17.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-prettier": "4.0.0",

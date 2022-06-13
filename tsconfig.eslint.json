@@ -7,9 +7,5 @@
   "include": [
     // repeated from base config's "include" setting
     "schematics",
-
-    // these are the eslint-only inclusions
-    "del-build-files.ts",
-    "del-spec-files.ts"
   ]
 }
