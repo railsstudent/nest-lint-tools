@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "A schematics to install dependencies and elsint plugins to enforce code quality",
   "scripts": {
-    "copy-build-files": "copyfiles ./schematics/*/schema.json ./schematics/**/*.{js,js.map,d.ts} ./schematics/*/files/** ./schematics/collection.json ./dist",
+    "copy-build-files": "copyfiles package.json ./schematics/*/schema.json ./schematics/**/*.{js,js.map,d.ts} ./schematics/*/files/** ./schematics/collection.json ./dist",
     "delete-build-files": "ts-node ./del-build-files.ts",
     "delete-spec-files": "ts-node ./del-spec-files.ts",
     "prebuild": "rimraf dist",
@@ -20,7 +20,7 @@
     "nestjs",
     "lint"
   ],
-  "author": "",
+  "author": "Connie Leung",
   "license": "MIT",
   "schematics": "./schematics/collection.json",
   "nest-add": {
