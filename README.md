@@ -20,7 +20,7 @@ To test locally, install `@angular-devkit/schematics-cli` globally and use the `
 ### Test in dry run mode
 
 ```bash
-npm run manual-test:dry
+npm run manual-test:dry-run
 ```
 
 ``` bash
