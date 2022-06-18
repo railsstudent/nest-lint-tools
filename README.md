@@ -13,6 +13,10 @@
 - Add engines section in package.json
 - Add either .node-version or .nvmrc node configuration version
 
+### Install global dependency
+
+npm install -g @angular-devkit/schematics-cli
+
 ### Testing
 
 To test locally, install `@angular-devkit/schematics-cli` globally and use the `schematics` command line tool. That tool acts the same as the `generate` command of the Angular CLI, but also has a debug mode.
@@ -20,6 +24,7 @@ To test locally, install `@angular-devkit/schematics-cli` globally and use the `
 ### Test in dry run mode
 
 ```bash
+nom run build
 npm run manual-test:dry-run
 ```
 
