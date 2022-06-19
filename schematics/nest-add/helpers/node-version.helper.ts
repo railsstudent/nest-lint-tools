@@ -24,8 +24,6 @@ function addEngines(tree: Tree, context: SchematicContext, nodeVersion: number) 
   }
   tree.overwrite(pkgPath, JSON.stringify(packageJson, null, 2))
   context.logger.info(`Added ${nodeVersion} to package.json`)
-
-  return tree
 }
 
 function generateNodeVersionFile(tree: Tree, context: SchematicContext, options: Schema) {
@@ -45,6 +43,4 @@ function generateNodeVersionFile(tree: Tree, context: SchematicContext, options:
       context.logger.info(`Found ${configFileName}, skip this step`)
     }
   }
-
-  return tree
 }

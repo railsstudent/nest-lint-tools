@@ -23,7 +23,6 @@ function createCspellJson(tree: Tree, context: SchematicContext) {
   } else {
     context.logger.info(`Found ${configName}, skip this step`)
   }
-  return tree
 }
 
 function addNpmScript(tree: Tree, context: SchematicContext) {
@@ -42,6 +41,4 @@ function addNpmScript(tree: Tree, context: SchematicContext) {
   } else {
     context.logger.info('Found cspell script, skip this step')
   }
-
-  return tree
 }

@@ -25,6 +25,4 @@ function createCommitlintConfig(tree: Tree, context: SchematicContext) {
   } else {
     context.logger.info(`Found ${configName}, skip this step`)
   }
-
-  return tree
 }

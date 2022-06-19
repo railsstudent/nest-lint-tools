@@ -21,7 +21,5 @@ export function addEslintSonarjs(options: Schema): Rule {
       addDependencies(tree, context, [eslintSonarjs])
       updateEslintrc(tree, context, { eslintExtend: 'plugin:sonarjs/recommended', plugin: 'sonarjs' })
     }
-
-    return tree
   }
 }

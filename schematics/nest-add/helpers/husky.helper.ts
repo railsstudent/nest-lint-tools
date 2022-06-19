@@ -23,8 +23,6 @@ npx --no -- commitlint --edit "\${1}"
   } else {
     context.logger.info(`Found ${commitMsgFilePath}, skip this step`)
   }
-
-  return tree
 }
 
 export function addPreCommitHook(tree: Tree, context: SchematicContext) {
@@ -49,8 +47,6 @@ npx --no-install lint-staged
   } else {
     context.logger.info(`Found ${preCommitFilePath}, skip this step`)
   }
-
-  return tree
 }
 
 export function addHuskyPrepareScript(tree: Tree, context: SchematicContext) {
@@ -69,6 +65,4 @@ export function addHuskyPrepareScript(tree: Tree, context: SchematicContext) {
   } else {
     context.logger.info('Found husky prepare script, skip this step')
   }
-
-  return tree
 }

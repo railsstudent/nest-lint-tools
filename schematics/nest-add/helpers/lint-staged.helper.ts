@@ -35,5 +35,4 @@ function createLintStagedJson(tree: Tree, context: SchematicContext, options: Sc
   } else {
     context.logger.info(`Found ${configName}, skip this step`)
   }
-  return tree
 }
