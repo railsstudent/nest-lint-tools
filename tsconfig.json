@@ -19,6 +19,6 @@
     "target": "es6",
     "types": ["jasmine", "node"]
   },
-  "include": ["schematics/nest-add"],
+  "include": ["schematics/**/*"],
   "exclude": ["schematics/*/files/**/*"]
 }

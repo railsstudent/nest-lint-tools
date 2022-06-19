@@ -25,7 +25,7 @@ function createLintStagedJson(tree: Tree, context: SchematicContext, options: Sc
   eslintCommands.push('eslint --fix --max-warnings 0')
 
   const content = {
-    '*.{ts,js}': eslintCommands,
+    '*.ts': eslintCommands,
   }
 
   const configName = '.lintstagedrc.json'
