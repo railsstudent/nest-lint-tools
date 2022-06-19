@@ -4,5 +4,5 @@
     "rootDir": "./schematics",
     "outDir": "./dist/schematics",
   },
-  "exclude": ["schematics/*/files/**/*", "schematics/*/*.spec.ts"]
+  "exclude": ["schematics/**/files/**/*", "schematics/**/*.spec.ts"]
 }
