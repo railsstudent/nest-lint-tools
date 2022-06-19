@@ -9,8 +9,8 @@
     "build": "tsc -p tsconfig.schematics.json",
     "postbuild": "npm run copy-files",
     "test": "npm run build && jasmine src/**/*_spec.js",
-    "manual-test:dry-run": "schematics .:nest-add",
-    "manual-test": "schematics .:nest-add --dry-run=false",
+    "manual-test:dry-run": "npm run build && schematics .:nest-add",
+    "manual-test": "npm run build && schematics .:nest-add --dry-run=false",
     "lint": "eslint \"{src,schematics}/**/*.ts\" --fix",
     "format": "prettier --write ."
   },

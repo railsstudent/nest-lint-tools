@@ -1,5 +1,6 @@
-import { Rule, SchematicContext, SchematicsException, Tree } from '@angular-devkit/schematics'
-import { cspell, CSPELL_CONFIG } from '../constants'
+import { strings } from '@angular-devkit/core'
+import { apply, mergeWith, Rule, SchematicContext, SchematicsException, template, Tree, url } from '@angular-devkit/schematics'
+import { cspell } from '../constants'
 import { Schema } from '../schema'
 import { addDependencies } from './dependency.helper'
 
@@ -7,21 +8,14 @@ export function addCspell(options: Schema): Rule {
   return (tree: Tree, context: SchematicContext) => {
     if (options.isAddCspell) {
       addDependencies(tree, context, [cspell])
-      createCspellJson(tree, context)
       addNpmScript(tree, context)
+
+      const sourceTemplates = url('../files/cspell')
+      const sourceParametrizedTemplates = apply(sourceTemplates, [template({ ...options, ...strings })])
+      return mergeWith(sourceParametrizedTemplates)
     }
 
     return tree
-  }
-}
-
-function createCspellJson(tree: Tree, context: SchematicContext) {
-  const configName = 'cspell.json'
-  if (!tree.exists(configName)) {
-    tree.create(configName, JSON.stringify(CSPELL_CONFIG, null, 2))
-    context.logger.info(`Added ${configName}`)
-  } else {
-    context.logger.info(`Found ${configName}, skip this step`)
   }
 }
 
