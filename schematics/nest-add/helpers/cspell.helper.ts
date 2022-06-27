@@ -1,5 +1,4 @@
-import { strings } from '@angular-devkit/core'
-import { apply, mergeWith, Rule, SchematicContext, SchematicsException, template, Tree, url } from '@angular-devkit/schematics'
+import { mergeWith, Rule, SchematicContext, SchematicsException, Tree, url } from '@angular-devkit/schematics'
 import { cspell } from '../constants'
 import { Schema } from '../schema'
 import { addDependencies } from './dependency.helper'
@@ -10,9 +9,7 @@ export function addCspell(options: Schema): Rule {
       addDependencies(tree, context, [cspell])
       addNpmScript(tree, context)
 
-      const sourceTemplates = url('../files/cspell')
-      const sourceParametrizedTemplates = apply(sourceTemplates, [template({ ...options, ...strings })])
-      return mergeWith(sourceParametrizedTemplates)
+      return mergeWith(url('./files/cspell'))(tree, context)
     }
 
     return tree
