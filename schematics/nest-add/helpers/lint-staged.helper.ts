@@ -29,10 +29,12 @@ function createLintStagedJson(tree: Tree, context: SchematicContext, options: Sc
   }
 
   const configName = '.lintstagedrc.json'
-  if (!tree.exists(configName)) {
-    tree.create(configName, JSON.stringify(content, null))
-    context.logger.info(`Added ${configName}`)
-  } else {
-    context.logger.info(`Found ${configName}, skip this step`)
+  if (tree.exists(configName)) {
+    const originalFilename = `${configName}.original`
+    tree.rename(configName, originalFilename)
+    context.logger.info(`Rename ${configName} to ${originalFilename}`)
   }
+
+  tree.create(configName, JSON.stringify(content, null))
+  context.logger.info(`Added ${configName}`)
 }

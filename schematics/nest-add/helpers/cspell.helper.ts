@@ -8,11 +8,21 @@ export function addCspell(options: Schema): Rule {
     if (options.isAddCspell) {
       addDependencies(tree, context, [cspell])
       addNpmScript(tree, context)
+      renameCspell(tree, context)
 
       return mergeWith(url('./files/cspell'))(tree, context)
     }
 
     return tree
+  }
+}
+
+function renameCspell(tree: Tree, context: SchematicContext) {
+  const configName = 'cspell.json'
+  if (tree.exists(configName)) {
+    const originalFileName = `${configName}.original`
+    tree.rename(configName, originalFileName)
+    context.logger.info(`Rename ${configName} to ${originalFileName}`)
   }
 }
 
