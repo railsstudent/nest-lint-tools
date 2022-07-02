@@ -6,6 +6,6 @@
   },
   "include": [
     // repeated from base config's "include" setting
-    "schematics",
+    "schematics"
   ]
 }

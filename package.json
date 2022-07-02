@@ -5,18 +5,20 @@
   "scripts": {
     "copy-files": "cpx ./schematics/**/{schema.json,files/**,collection.json} ./dist/schematics",
     "prebuild": "rimraf dist",
-    "build:watch": "tsc -p tsconfig.schematics.json --watch",
     "build": "tsc -p tsconfig.json",
     "test": "npm run build && jasmine src/**/*_spec.js",
     "manual-test:dry-run": "npm run build && schematics .:nest-add",
     "manual-test": "npm run build && schematics .:nest-add --dry-run=false",
-    "lint": "eslint \"{src,schematics}/**/*.ts\" --fix",
+    "lint": "eslint \"schematics/**/*.ts\" --fix",
     "format": "prettier --write ."
   },
   "keywords": [
     "schematics",
     "nestjs",
-    "lint"
+    "commitlint",
+    "lintstaged",
+    "cspell",
+    "husky"
   ],
   "author": "Connie Leung",
   "license": "MIT",

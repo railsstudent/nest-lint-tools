@@ -1,6 +1,5 @@
 # NPM Lint Tools
 
-
 ### What does it do?
 
 - Enable strict mode in tsconfig.json
@@ -28,7 +27,7 @@ nom run build
 npm run manual-test:dry-run
 ```
 
-``` bash
+```bash
 ? Do you like to set strict mode in tsconfig.json? Yes
 ? Do you like to add cspell for spell checking? Yes
 ? Do you like to add commitlint to adopt the convention of commit message? Yes
@@ -77,7 +76,7 @@ npm link ../nest-lint-tools
 schematics nest-lint-tools:nest-add
 ```
 
-``` bash
+```bash
 ? Do you like to set strict mode in tsconfig.json? Yes
 ? Do you like to add cspell for spell checking? Yes
 ? Do you like to add commitlint to adopt the convention of commit message? Yes
@@ -128,7 +127,6 @@ Check the documentation with
 ```bash
 schematics --help
 ```
-
 
 ### Publishing
 
