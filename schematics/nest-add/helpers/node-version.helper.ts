@@ -35,12 +35,18 @@ function generateNodeVersionFile(tree: Tree, context: SchematicContext, options:
 
   const { nodeVersionFile, nodeVersion } = options
   const configFileName = configFileNameMap[nodeVersionFile] || ''
-  if (configFileName) {
-    if (tree.exists(configFileName)) {
-      const originalConfigFileName = `${configFileName}.original`
-      tree.rename(configFileName, originalConfigFileName)
-      context.logger.info(`Rename ${configFileName} to ${originalConfigFileName}`)
+
+  if (!configFileName) {
+    return
+  }
+
+  if (tree.exists(configFileName)) {
+    const originalConfigFileName = `${configFileName}.original`
+    if (tree.exists(originalConfigFileName)) {
+      tree.delete(originalConfigFileName)
     }
+    tree.rename(configFileName, originalConfigFileName)
+    context.logger.info(`Rename ${configFileName} to ${originalConfigFileName}`)
   }
 
   tree.create(configFileName, `${nodeVersion}`)

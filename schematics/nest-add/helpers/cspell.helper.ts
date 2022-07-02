@@ -18,11 +18,14 @@ export function addCspell(options: Schema): Rule {
 }
 
 function renameCspell(tree: Tree, context: SchematicContext) {
-  const configName = 'cspell.json'
-  if (tree.exists(configName)) {
-    const originalFileName = `${configName}.original`
-    tree.rename(configName, originalFileName)
-    context.logger.info(`Rename ${configName} to ${originalFileName}`)
+  const configFileName = 'cspell.json'
+  if (tree.exists(configFileName)) {
+    const originalConfigFileName = `${configFileName}.original`
+    if (tree.exists(originalConfigFileName)) {
+      tree.delete(originalConfigFileName)
+    }
+    tree.rename(configFileName, originalConfigFileName)
+    context.logger.info(`Rename ${configFileName} to ${originalConfigFileName}`)
   }
 }
 

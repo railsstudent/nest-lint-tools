@@ -24,17 +24,21 @@ function createLintStagedJson(tree: Tree, context: SchematicContext, options: Sc
   }
   eslintCommands.push('eslint --fix --max-warnings 0')
 
-  const content = {
+  const content: Record<string, string[] | string> = {
     '*.ts': eslintCommands,
+    '*.{md,json,html}': 'prettier --write',
   }
 
-  const configName = '.lintstagedrc.json'
-  if (tree.exists(configName)) {
-    const originalFilename = `${configName}.original`
-    tree.rename(configName, originalFilename)
-    context.logger.info(`Rename ${configName} to ${originalFilename}`)
+  const configFileName = '.lintstagedrc.json'
+  if (tree.exists(configFileName)) {
+    const originalConfigFileName = `${configFileName}.original`
+    if (tree.exists(originalConfigFileName)) {
+      tree.delete(originalConfigFileName)
+    }
+    tree.rename(configFileName, originalConfigFileName)
+    context.logger.info(`Rename ${configFileName} to ${originalConfigFileName}`)
   }
 
-  tree.create(configName, JSON.stringify(content, null))
-  context.logger.info(`Added ${configName}`)
+  tree.create(configFileName, JSON.stringify(content, null, 2))
+  context.logger.info(`Added ${configFileName}`)
 }

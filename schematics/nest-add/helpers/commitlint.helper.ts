@@ -18,13 +18,16 @@ export function addCommitlint(options: Schema): Rule {
 }
 
 function createCommitlintConfig(tree: Tree, context: SchematicContext) {
-  const configName = 'commitlint.config.js'
-  if (tree.exists(configName)) {
-    const originalFileName = `${configName}.original`
-    tree.rename(configName, originalFileName)
-    context.logger.info(`Rename ${configName} to ${originalFileName}`)
+  const configFileName = 'commitlint.config.js'
+  if (tree.exists(configFileName)) {
+    const originalConfigFileName = `${configFileName}.original`
+    if (tree.exists(originalConfigFileName)) {
+      tree.delete(originalConfigFileName)
+    }
+    tree.rename(configFileName, originalConfigFileName)
+    context.logger.info(`Rename ${configFileName} to ${originalConfigFileName}`)
   }
 
-  tree.create(configName, `module.exports = { extends: ['@commitlint/config-conventional'] };`)
-  context.logger.info(`Added ${configName}`)
+  tree.create(configFileName, `module.exports = { extends: ['@commitlint/config-conventional'] };`)
+  context.logger.info(`Added ${configFileName}`)
 }
